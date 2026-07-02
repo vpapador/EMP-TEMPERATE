@@ -144,6 +144,7 @@ View(asv_taxa_subset_1500_all)
 
 
 #####################################################
+```
 ### ΔΗΜΙΟΥΡΓΊΑ ΔΟΜΉΣ ΓΙΑ MICROECO OBJECT ΓΙΑ ΤΟ TEMPERATE
 
 ```
@@ -201,7 +202,7 @@ mt_rarefied_temp$cal_alphadiv(PD = TRUE)
 class(mt_rarefied_temp$alpha_diversity)
 
 ```
-
+### BETA DIVERSITY ΓΙΑ ΤΟ TEMPERATE
 
 
 
