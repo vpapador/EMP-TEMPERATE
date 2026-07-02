@@ -492,7 +492,8 @@ lda_temp$plot_diff_bar(use_number = 1:30, width = 0.8, group_order = c("anthropo
 
 
 
-<img width="1920" height="954" alt="image" src="https://github.com/user-attachments/assets/f022a57f-b921-4b8b-9371-33a285228ad1" />
+<img width="672" height="671" alt="image" src="https://github.com/user-attachments/assets/df8c6918-494c-4cee-9c3b-d0623db3a6b0" />
+
 
 
 
@@ -560,3 +561,6 @@ lda_temp3$plot_diff_cladogram(use_taxa_num = 200, use_feature_num = 30, select_s
 
 ```
 
+
+
+<img width="1920" height="954" alt="image" src="https://github.com/user-attachments/assets/f022a57f-b921-4b8b-9371-33a285228ad1" />
