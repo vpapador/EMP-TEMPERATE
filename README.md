@@ -406,3 +406,47 @@ plots <- lapply(list(p1, p2, p3, p4), function(x) {
 
 
 
+
+
+```
+
+
+trans_alpha_temp2 <- trans_alpha$new(dataset = mt_rarefied_temp, group = "envo_biome_2", by_group = "temperate")
+
+trans_alpha_temp2$cal_diff(method = "wilcox")
+library(magrittr)
+trans_alpha_temp2$res_diff %<>% base::subset(Significance != "ns")
+trans_alpha_temp2$plot_alpha(measure = "Chao1")
+trans_alpha_temp2$res_diff %<>% base::subset(Significance != "ns")
+trans_alpha_temp2$plot_alpha(measure = "Shannon")
+trans_alpha_temp2$res_diff %<>% base::subset(Significance != "ns")
+trans_alpha_temp2$plot_alpha(measure = "Simpson")
+trans_alpha_temp2$res_diff %<>% base::subset(Significance != "ns")
+trans_alpha_temp2$plot_alpha(measure = "PD")
+
+
+
+library(patchwork)
+
+# Κράτα μόνο τα σημαντικά αποτελέσματα
+trans_alpha_temp2$res_diff <- subset(
+  trans_alpha_temp2$res_diff,
+  Significance != "ns"
+)
+
+p5 <- trans_alpha_temp2$plot_alpha(measure = "Chao1")
+p6 <- trans_alpha_temp2$plot_alpha(measure = "Shannon")
+p7 <- trans_alpha_temp2$plot_alpha(measure = "Simpson")
+p8 <- trans_alpha_temp2$plot_alpha(measure = "PD")
+
+(p5 + p6) /
+(p7 + p8)
+
+
+
+```
+
+
+
+<img width="1920" height="954" alt="image" src="https://github.com/user-attachments/assets/a7298659-a5e2-4d89-a314-f6765ecea020" />
+
