@@ -564,3 +564,24 @@ lda_temp3$plot_diff_cladogram(use_taxa_num = 200, use_feature_num = 30, select_s
 
 
 <img width="1920" height="954" alt="image" src="https://github.com/user-attachments/assets/f022a57f-b921-4b8b-9371-33a285228ad1" />
+
+
+
+
+
+
+
+
+<img width="1024" height="1024" alt="anthropo" src="https://github.com/user-attachments/assets/1022ceec-6c2d-4df9-b397-e1b0ef6f9719" />
+
+
+
+
+
+
+
+
+
+
+
+
