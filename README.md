@@ -201,6 +201,12 @@ class(mt_rarefied_temp$alpha_diversity)
 
 ```
 ### BETA DIVERSITY ΓΙΑ ΤΟ TEMPERATE
+```
+# require GUniFrac package installed
+mt_rarefied_temp$cal_betadiv(unifrac = TRUE)
+# return beta_diversity list in the object
+class(mt_rarefied_temp$beta_diversity)
 
+```
 
 
