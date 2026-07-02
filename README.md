@@ -650,3 +650,33 @@ write_graph(natural_network$res_network,
 
 
 
+
+
+
+
+```
+anthropo_network$plot_taxa_roles(use_type = 2)
+
+
+```
+
+
+
+
+<img width="1920" height="954" alt="image" src="https://github.com/user-attachments/assets/80c5fc67-01b4-4cc4-b745-ccc190be63be" />
+
+
+
+
+
+
+```
+natural_network$plot_taxa_roles(use_type = 2)
+
+
+```
+
+
+
+<img width="1920" height="954" alt="image" src="https://github.com/user-attachments/assets/9f14c7cd-5c37-48f2-8f6f-052a2c63f1b9" />
+
