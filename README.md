@@ -267,5 +267,11 @@ pie_phyla_temp$plot_donut(label = TRUE)
 
 ```
 <img width="1006" height="688" alt="image" src="https://github.com/user-attachments/assets/3a4512c6-0684-43f0-95d4-ee997d2d7160" />
+```
+pie_phyla_temp <- trans_abund$new(dataset = mt_temperate, taxrank = "Phylum", ntaxa = 9, groupmean = "envo_biome_2")
+pie_phyla_temp$plot_donut(label = FALSE)
+pie_phyla_temp$plot_donut(label = TRUE)
 
+```
+<img width="1920" height="954" alt="image" src="https://github.com/user-attachments/assets/480e7c42-ea2f-430a-960a-fb359945e134" />
 
