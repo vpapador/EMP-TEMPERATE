@@ -191,6 +191,45 @@ mt_rarefied_temp$sample_sums() %>% range
 mt_rarefied_temp$rarefy_samples(sample.size = 6500)
 
 ```
+### ΔΗΜΙΟΥΡΓΙΑ SUBSETS ΓΙΑ ΤΑ TEMPERATE ANTHROPOGENIC & NATURAL
+```
+#antropo
+group_anthropo_temp <- clone(mt_temperate)
+# select 'anthropogenic biome'
+group_anthropo_temp$sample_table <- subset(group_anthropo_temp$sample_table, temperate == "anthropogenic biome")
+# trim all the data
+group_anthropo_temp$tidy_dataset()
+
+group_anthropo_temp$cal_abund()
+
+# first clone the data
+group_anthropo_temp_rarefied <- clone(group_anthropo_temp)
+# use sample_sums to check the sequence numbers in each sample
+group_anthropo_temp_rarefied$sample_sums() %>% range
+
+# As an example, use 10000 sequences in each sample
+group_anthropo_temp_rarefied$rarefy_samples(sample.size = 6500)
+
+#natural 
+group_natural_temp <- clone(mt_temperate)
+# select 'anthropogenic biome'
+group_natural_temp$sample_table <- subset(group_natural_temp$sample_table, temperate == "natural habitat")
+# trim all the data
+group_natural_temp$tidy_dataset()
+
+group_natural_temp$cal_abund()
+
+# first clone the data
+group_natural_temp_rarefied <- clone(group_natural_temp)
+# use sample_sums to check the sequence numbers in each sample
+group_natural_temp_rarefied$sample_sums() %>% range
+
+# As an example, use 10000 sequences in each sample
+group_natural_temp_rarefied$rarefy_samples(sample.size = 6500)
+
+```
+
+
 ### ALPHA DIVERSITY ΓΙΑ ΤΟ TEMPERATE
 ```
 # If you want to add Faith's phylogenetic diversity, use PD = TRUE, this will be a little slow
