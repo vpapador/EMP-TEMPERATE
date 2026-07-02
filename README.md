@@ -470,15 +470,93 @@ trans_beta_temp$res_manova
 
 
 
+### LEfSe
+
+
+```
+
+lda_temp <- trans_diff$new(dataset = mt_temperate, method = "lefse", group = "temperate", alpha = 0.01, lefse_subgroup = NULL)
+# see t1$res_diff for the result
+# From v0.8.0, threshold is used for the LDA score selection.
+lda_temp$plot_diff_bar(threshold = 4)
+# we show 20 taxa with the highest LDA (log10)
+lda_temp$plot_diff_bar(use_number = 1:30, width = 0.8, group_order = c("anthropogenic biome", "natural habitat"))
+
+
+# clade_label_level 5 represent phylum level in this analysis
+# require ggtree package
+
+
+
+```
+
+
+
+<img width="1920" height="954" alt="image" src="https://github.com/user-attachments/assets/f022a57f-b921-4b8b-9371-33a285228ad1" />
 
 
 
 
+```
+
+mt_2 <- mt_temperate
+tax <- mt_2$tax_table
+
+tax[tax == "None"] <- NA
+
+prefixes <- c("k__", "p__", "c__", "o__", "f__", "g__", "s__")
+
+for (i in seq_along(prefixes)) {
+  tax[, i] <- ifelse(
+    is.na(tax[, i]) | tax[, i] == "",
+    paste0(prefixes[i], "unclassified"),
+    tax[, i]
+  )
+}
+
+mt_2$tax_table <- tax
+
+mt_2$cal_abund()
+mt_2 <- tidy_taxonomy(mt_2, na_fill = TRUE)
+lda_temp3 <- trans_diff$new(dataset = mt_2, method = "lefse", group = "temperate", alpha = 0.01, lefse_subgroup = NULL)
+
+lda_temp3$plot_diff_cladogram(use_taxa_num = 200, use_feature_num = 30, clade_label_level = 5, group_order = c("anthropogenic biome", "natural habitat"))
 
 
 
 
+important <- c(
+  # πάνω (Bacteroidetes / Verrucomicrobia περιοχή)
+  "p__Verrucomicrobia", 
+#"c__[Spartobacteria]",
+  "p__Bacteroidetes", 
+#"c__[Saprospirae]", "c__Cytophagia",
+  #"f__Chitinophagaceae",
 
+  # δεξιά πάνω (Nitrospirae / Archaea)
+  "p__Nitrospirae", 
+#"c__Nitrospira",
+  #"k__Archaea",
+ "p__Crenarchaeota",
 
+  # δεξιά κάτω (Proteobacteria)
+  "p__Proteobacteria", 
+#"c__Alphaproteobacteria", "o__Rhizobiales",
+ # "c__Betaproteobacteria", "c__Gammaproteobacteria",
+  #"o__Xanthomonadales", "c__Deltaproteobacteria", "o__Syntrophobacterales",
 
+  # κάτω αριστερά (Actinobacteria)
+  "p__Actinobacteria",
+# "c__Actinobacteria", "o__Actinomycetales",
+
+  # αριστερά (Acidobacteria / Gemmatimonadetes)
+  #"k__Bacteria",
+ "p__Acidobacteria",
+  "p__Gemmatimonadetes"
+#, "o__Ellin6513"
+)
+
+lda_temp3$plot_diff_cladogram(use_taxa_num = 200, use_feature_num = 30, select_show_labels = important)
+
+```
 
