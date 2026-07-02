@@ -283,3 +283,18 @@ pie_phyla_temp$plot_donut(label = TRUE)
 
 <img width="1920" height="954" alt="image" src="https://github.com/user-attachments/assets/480e7c42-ea2f-430a-960a-fb359945e134" />
 
+
+
+
+```
+
+# merge samples as one community for each group
+tmp <- mt_rarefied_temp$merge_samples("envo_biome_2")
+# tmp is a new microtable object
+# create trans_venn object
+tt_ven <- trans_venn$new(tmp, ratio = NULL)
+tt_ven$plot_venn()
+
+```
+
+<img width="1920" height="954" alt="image" src="https://github.com/user-attachments/assets/dc5f5a53-2c0f-41eb-a485-48efb9da36f8" />
