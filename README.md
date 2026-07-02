@@ -448,3 +448,37 @@ trans_beta_temp2$plot_ordination(plot_color = "envo_biome_2", plot_shape = "envo
 
 
 
+### PERMANOVA
+
+
+```
+#PERMANOVA
+trans_beta_temp$cal_manova(manova_all = TRUE)
+trans_beta_temp$res_manova
+
+
+```
+
+
+
+
+| Source | Df | Sum of Squares | R² | F | P-value | Significance |
+|--------|---:|---------------:|---:|---:|:--------:|:------------:|
+| Temperate | 1 | 13.459 | 0.131 | 40.979 | 0.001 | *** |
+| Residual | 273 | 89.666 | 0.869 | – | – | – |
+| Total | 274 | 103.126 | 1.000 | – | – | – |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
