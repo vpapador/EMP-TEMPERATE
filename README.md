@@ -636,7 +636,8 @@ write_graph(natural_network$res_network,
 
 
 
-<img width="1024" height="1024" alt="anthropo" src="https://github.com/user-attachments/assets/1022ceec-6c2d-4df9-b397-e1b0ef6f9719" />
+<img width="1024" height="1024" alt="anthropo" src="https://github.com/user-attachments/assets/1022ceec-6c2d-4df9-b397-e1b0ef6f9719" />  <img width="1024" height="1024" alt="natural" src="https://github.com/user-attachments/assets/a1d6bb96-3b4e-4272-87dc-a98828b76e5a" />
+
 
 
 
