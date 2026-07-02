@@ -407,3 +407,44 @@ p8 <- trans_alpha_temp2$plot_alpha(measure = "PD")
 
 <img width="1920" height="954" alt="image" src="https://github.com/user-attachments/assets/a7298659-a5e2-4d89-a314-f6765ecea020" />
 
+
+
+
+### BETA DIVERSITY GRAPHS
+```
+
+#TRANSBETA OBJECT
+
+trans_beta_temp <- trans_beta$new(dataset = mt_rarefied_temp, group = "temperate", measure = "bray")
+trans_beta_temp2 <- trans_beta$new(dataset = mt_rarefied_temp, group = "envo_biome_2", measure = "bray")
+
+
+trans_beta_temp$cal_ordination(method = "PCoA")
+# t1$res_ordination is the ordination result list
+class(trans_beta_temp$res_ordination)
+# plot the PCoA result with confidence ellipse
+trans_beta_temp$plot_ordination(plot_color = "temperate", plot_shape = "temperate", plot_type = c("point", "ellipse"))
+
+
+```
+
+
+<img width="882" height="783" alt="image" src="https://github.com/user-attachments/assets/bca04720-9bf5-4ddd-b630-9804931220a4" />
+
+
+```
+
+trans_beta_temp2$cal_ordination(method = "PCoA")
+# t1$res_ordination is the ordination result list
+class(trans_beta_temp2$res_ordination)
+# plot the PCoA result with confidence ellipse
+trans_beta_temp2$plot_ordination(plot_color = "envo_biome_2", plot_shape = "envo_biome_2", plot_type = c("point", "ellipse"))
+
+
+```
+
+
+<img width="882" height="783" alt="image" src="https://github.com/user-attachments/assets/4e5a6047-5db7-40d2-b75d-c5ab34188b49" />
+
+
+
