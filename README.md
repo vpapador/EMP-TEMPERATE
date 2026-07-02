@@ -618,6 +618,24 @@ write_graph(natural_network$res_network,
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <img width="1024" height="1024" alt="anthropo" src="https://github.com/user-attachments/assets/1022ceec-6c2d-4df9-b397-e1b0ef6f9719" />
 
 
