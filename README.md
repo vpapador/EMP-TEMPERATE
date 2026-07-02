@@ -248,4 +248,18 @@ class(mt_rarefied_temp$beta_diversity)
 
 ```
 
+### RELATIVE ABUNDANCE
+```
+phyla_temp <- trans_abund$new(dataset = mt_temperate, taxrank = "Phylum", ntaxa = 8)
+phyla_temp$plot_bar(others_color = "grey70", facet = "temperate", xtext_keep = FALSE, legend_text_italic = FALSE)
+# return a ggplot2 object
+
+
+# require package ggh4x, first run install.packages("ggh4x") if not installed
+phyla_temp$plot_bar(others_color = "grey70", facet = c("temperate", "envo_biome_2"), xtext_keep = FALSE, legend_text_italic = FALSE, barwidth = 1)
+```
+<img width="1746" height="868" alt="image" src="https://github.com/user-attachments/assets/47de26ac-a259-4b32-942c-2d383dffe610" />
+
+
+
 
