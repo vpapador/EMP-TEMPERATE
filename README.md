@@ -142,8 +142,6 @@ asv_taxa_subset_1500_all<- read.table(
 asv_taxa_subset_1500_all<-asv_taxa_subset_1500_all[,-1]
 View(asv_taxa_subset_1500_all)
 
-
-#####################################################
 ```
 ### ΔΗΜΙΟΥΡΓΊΑ ΔΟΜΉΣ ΓΙΑ MICROECO OBJECT ΓΙΑ ΤΟ TEMPERATE
 
