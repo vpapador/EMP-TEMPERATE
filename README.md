@@ -298,3 +298,111 @@ tt_ven$plot_venn()
 ```
 
 <img width="1920" height="954" alt="image" src="https://github.com/user-attachments/assets/dc5f5a53-2c0f-41eb-a485-48efb9da36f8" />
+
+
+### ALPHA DIVERSITY GRAPHS
+
+```
+library(ggplot2)
+
+p1 <- trans_alpha_temp$plot_alpha(
+  measure = "Chao1",
+  shape = "temperate",
+  add = "jitter",
+  y_start = 0.1,
+  y_increase = 0.1,
+  group_order = c("anthropogenic biome", "natural habitat")
+)
+
+p1 +
+  scale_fill_manual(values = c(
+    "anthropogenic biome" = "#E64B35",
+    "natural habitat" = "#4DBBD5"
+  )) +
+  scale_color_manual(values = c(
+    "anthropogenic biome" = "#E64B35",
+    "natural habitat" = "#4DBBD5"
+  ))
+
+p2 <- trans_alpha_temp$plot_alpha(
+  measure = "Shannon",
+  shape = "temperate",
+  add = "jitter",
+  y_start = 0.1,
+  y_increase = 0.1,
+  group_order = c("anthropogenic biome", "natural habitat")
+)
+
+p2 +
+  scale_fill_manual(values = c(
+    "anthropogenic biome" = "#E64B35",
+    "natural habitat" = "#4DBBD5"
+  )) +
+  scale_color_manual(values = c(
+    "anthropogenic biome" = "#E64B35",
+    "natural habitat" = "#4DBBD5"
+  ))
+
+p3 <- trans_alpha_temp$plot_alpha(
+  measure = "Simpson",
+  shape = "temperate",
+  add = "jitter",
+  y_start = 0.1,
+  y_increase = 0.1,
+  group_order = c("anthropogenic biome", "natural habitat")
+)
+
+p3 +
+  scale_fill_manual(values = c(
+    "anthropogenic biome" = "#E64B35",
+    "natural habitat" = "#4DBBD5"
+  )) +
+  scale_color_manual(values = c(
+    "anthropogenic biome" = "#E64B35",
+    "natural habitat" = "#4DBBD5"
+  ))
+
+p4 <- trans_alpha_temp$plot_alpha(
+  measure = "PD",
+  shape = "temperate",
+  add = "jitter",
+  y_start = 0.1,
+  y_increase = 0.1,
+  group_order = c("anthropogenic biome", "natural habitat")
+)
+
+p4 +
+  scale_fill_manual(values = c(
+    "anthropogenic biome" = "#E64B35",
+    "natural habitat" = "#4DBBD5"
+  )) +
+  scale_color_manual(values = c(
+    "anthropogenic biome" = "#E64B35",
+    "natural habitat" = "#4DBBD5"
+  ))
+
+
+library(patchwork)
+
+cols <- c(
+  "anthropogenic biome" = "#E64B35",
+  "natural habitat" = "#4DBBD5"
+)
+
+plots <- lapply(list(p1, p2, p3, p4), function(x) {
+  x +
+    scale_fill_manual(values = cols) +
+    scale_color_manual(values = cols)
+})
+
+(plots[[1]] + plots[[2]]) /
+(plots[[3]] + plots[[4]])
+
+```
+
+
+
+<img width="1920" height="954" alt="image" src="https://github.com/user-attachments/assets/ec895cdf-412a-423e-a407-f7871ed76822" />
+
+
+
