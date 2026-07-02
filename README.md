@@ -144,5 +144,64 @@ View(asv_taxa_subset_1500_all)
 
 
 #####################################################
+### ΔΗΜΙΟΥΡΓΊΑ ΔΟΜΉΣ ΓΙΑ MICROECO OBJECT ΓΙΑ ΤΟ TEMPERATE
 
 ```
+library(microeco)
+#community matrix
+otu_table_temperate<-dataframe_FINAL_temp
+View(otu_table_temperate)
+rownames(otu_table_temperate) <- otu_table_temperate[,1]
+otu_table_temperate <- otu_table_temperate[,-1]
+
+
+#metadata
+sample_table_temperate<-temperate_metadata_final
+rownames(sample_table_temperate) <- sample_table_temperate[,1]
+View(sample_table_temperate)
+
+#taxonomy
+tax_table_temperate<-asv_taxa_temperate_subset_FINAL
+rownames(tax_table_temperate) <- tax_table_temperate[,1]
+tax_table_temperate <- tax_table_temperate[,-1]
+View(tax_table_temperate)
+
+#phylogeny
+tree_temperate
+
+```
+### ΔΗΜΙΟΥΡΓΊΑ MICROECO OBJECT ΓΙΑ ΤΟ TEMPERATE ΚΑΙ RAREFACTION
+```
+#Δημιουργώ ένα microeco object 
+mt_temperate <- microtable$new(otu_table = otu_table_temperate, sample_table = sample_table_temperate, tax_table = tax_table_temperate, phylo_tree = tree_temperate)
+mt_temperate1<-mt_temperate
+mt_temperate1$tidy_dataset()
+mt_temperate1
+head(mt_temperate1$tax_table)
+
+
+# default parameter (rel = TRUE) denotes relative abundance
+mt_temperate1$cal_abund()
+
+# first clone the data
+mt_rarefied_temp <- clone(mt_temperate1)
+# use sample_sums to check the sequence numbers in each sample
+mt_rarefied_temp$sample_sums() %>% range
+
+# As an example, use 10000 sequences in each sample
+mt_rarefied_temp$rarefy_samples(sample.size = 6500)
+
+```
+### ALPHA DIVERSITY ΓΙΑ ΤΟ TEMPERATE
+```
+# If you want to add Faith's phylogenetic diversity, use PD = TRUE, this will be a little slow
+mt_rarefied_temp$cal_alphadiv(PD = TRUE)
+
+# return alpha_diversity in the object
+class(mt_rarefied_temp$alpha_diversity)
+
+```
+
+
+
+
