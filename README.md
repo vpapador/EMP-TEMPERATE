@@ -680,3 +680,64 @@ natural_network$plot_taxa_roles(use_type = 2)
 
 <img width="1920" height="954" alt="image" src="https://github.com/user-attachments/assets/9f14c7cd-5c37-48f2-8f6f-052a2c63f1b9" />
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### ΑΛΛΗΛΕΠΙΔΡΑΣΕΙΣ ΜΙΚΡΟΒΙΩΝ ΣΕ ΕΠΙΠΕΔΟ ΚΛΑΣΗΣ ΜΕΣΑ ΣΤΟ ΔΙΚΤΥΟ
+
+```
+anthropo_network$cal_sum_links(taxa_level = "Class")
+anthropo_network$plot_sum_links(plot_pos = TRUE, plot_num = 10, color_values = RColorBrewer::brewer.pal(10, "Paired"))
+anthropo_network$plot_sum_links(method = "circlize", transparency = 0.2, annotationTrackHeight = circlize::mm_h(c(5, 5)))
+```
+
+
+
+
+
+
+
+
+
+<img width="1920" height="954" alt="image" src="https://github.com/user-attachments/assets/7c645b4b-640a-4a74-9c6e-6aac1e978609" />
+
+
+
+
+
+
+
+
+
+```
+natural_network$cal_sum_links(taxa_level = "Class")
+natural_network$plot_sum_links(plot_pos = TRUE, plot_num = 10, color_values = RColorBrewer::brewer.pal(10, "Paired"))
+natural_network$plot_sum_links(method = "circlize", transparency = 0.2, annotationTrackHeight = circlize::mm_h(c(5, 5)))
+
+
+```
+
+
+
+<img width="1920" height="954" alt="image" src="https://github.com/user-attachments/assets/8fe2a10b-f6cd-43a7-9e2d-684856158dd1" />
+
+
+
