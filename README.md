@@ -703,6 +703,8 @@ natural_network$plot_taxa_roles(use_type = 2)
 
 ### ΑΛΛΗΛΕΠΙΔΡΑΣΕΙΣ ΜΙΚΡΟΒΙΩΝ ΣΕ ΕΠΙΠΕΔΟ ΚΛΑΣΗΣ ΜΕΣΑ ΣΤΟ ΔΙΚΤΥΟ
 
+Επιλέγω να κάνω τις θετικές, αντίστοιχα μπορώ να κάνω και τις αρνητικές αλληλεπιδράσεις
+
 ```
 anthropo_network$cal_sum_links(taxa_level = "Class")
 anthropo_network$plot_sum_links(plot_pos = TRUE, plot_num = 10, color_values = RColorBrewer::brewer.pal(10, "Paired"))
