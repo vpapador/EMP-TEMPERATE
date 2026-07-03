@@ -743,3 +743,33 @@ natural_network$plot_sum_links(method = "circlize", transparency = 0.2, annotati
 
 
 
+
+
+
+
+
+
+
+### ΔΗΜΙΟΥΡΓΙΑ NULL MODELS ΜΕ ΤΟ DATASET ΤΩΝ TEMPERATE
+```
+# generate trans_nullmodel object
+# as an example, we only use high abundance OTU with mean relative abundance > 0.0005
+t1 <- trans_nullmodel$new(mt_temperate1, filter_thres = 0.0005)
+
+# see null.model parameter for other null models
+# null model run 500 times for the example
+t1$cal_ses_betampd(runs = 500, abundance.weighted = TRUE)
+# return t1$res_ses_betampd
+```
+
+
+
+
+
+
+
+
+
+
+
+
