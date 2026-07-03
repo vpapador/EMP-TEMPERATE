@@ -762,6 +762,24 @@ t1$cal_ses_betampd(runs = 500, abundance.weighted = TRUE)
 # return t1$res_ses_betampd
 ```
 
+```
+mt_temperate1$beta_diversity[["betaNRI"]] <- t1$res_ses_betampd
+# create trans_beta class, use measure "betaNRI"
+t2 <- trans_beta$new(dataset = mt_temperate1, group = "temperate", measure = "betaNRI")
+# transform the distance for each group
+t2$cal_group_distance()
+# see the help document for more methods, e.g. "anova" and "KW_dunn"
+t2$cal_group_distance_diff(method = "wilcox")
+# plot the results
+g1 <- t2$plot_group_distance(add = "mean")
+g1 + geom_hline(yintercept = -2, linetype = 2) + geom_hline(yintercept = 2, linetype = 2)
+
+```
+
+
+
+
+<img width="672" height="671" alt="image" src="https://github.com/user-attachments/assets/4bc84134-9c1f-46d2-a75e-5677e7aa83e3" />
 
 
 
@@ -771,5 +789,74 @@ t1$cal_ses_betampd(runs = 500, abundance.weighted = TRUE)
 
 
 
+```
 
+tmp2 <- "./test1"; dir.create(tmp2)
+t1$cal_ses_betamntd(runs = 1000, abundance.weighted = TRUE, use_iCAMP = TRUE, iCAMP_tempdir = tmp2)
+
+
+# result stored in t1$res_rcbray
+t1$cal_rcbray(runs = 1000)
+# return t1$res_rcbray
+object$res_rcbray
+
+
+# use betaNTI and rcbray to evaluate processes
+t1$cal_process(use_betamntd = TRUE, group = "temperate")
+t1$cal_process(use_betamntd = TRUE)
+t1$res_process
+
+
+
+```
+
+
+
+
+| Community Type          | Process                 | Percentage (%) |
+|------------------------|------------------------|----------------|
+| Natural habitat        | Variable selection     | 34.75          |
+| Natural habitat        | Homogeneous selection  | 1.59           |
+| Natural habitat        | Dispersal limitation   | 8.90           |
+| Natural habitat        | Homogeneous dispersal  | 1.24           |
+| Natural habitat        | Drift                  | 53.52          |
+| Anthropogenic biome    | Variable selection     | 7.63           |
+| Anthropogenic biome    | Homogeneous selection  | 0.28           |
+| Anthropogenic biome    | Dispersal limitation   | 70.94          |
+| Anthropogenic biome    | Homogeneous dispersal  | 0.00           |
+| Anthropogenic biome    | Drift                  | 21.15          |
+
+
+
+```
+# require NST package to be installed
+t1$cal_NST(method = "tNST", group = "temperate", dist.method = "bray", abundance.weighted = TRUE, output.rand = TRUE, SES = TRUE)
+t1$res_NST$index.grp
+
+```
+
+
+
+
+
+| Group                | Size | ST.i.bray | NST.i.bray | MST.i.bray | SES.i.bray |
+|---------------------|------|-----------|------------|------------|------------|
+| Natural habitat     | 8385 | 0.776     | 0.517      | 0.449      | 3.756      |
+| Anthropogenic biome | 10440 | 0.724     | 0.603      | 0.496      | -0.809     |
+
+
+```
+#αυτο δε το ετρεξα 
+t1$cal_NST_test(method = "nst.boot")
+
+
+# for pNST method, phylogenetic tree is needed
+t1$cal_NST(method = "pNST", group = "temperate", output.rand = TRUE, SES = TRUE)
+t1$cal_NST_test(method = "nst.boot")
+
+#αυτο δε το ετρεξα
+t1$cal_NRI(null.model = "taxa.labels", abundance.weighted = FALSE, runs = 999)
+t1$cal_NTI(null.model = "taxa.labels", abundance.weighted = TRUE, runs = 999)
+
+```
 
