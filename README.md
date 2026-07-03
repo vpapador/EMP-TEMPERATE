@@ -779,7 +779,42 @@ g1 + geom_hline(yintercept = -2, linetype = 2) + geom_hline(yintercept = 2, line
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <img width="672" height="671" alt="image" src="https://github.com/user-attachments/assets/4bc84134-9c1f-46d2-a75e-5677e7aa83e3" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
