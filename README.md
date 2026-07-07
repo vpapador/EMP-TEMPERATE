@@ -846,6 +846,15 @@ t1$res_process
 
 
 
+In the example, the fraction of pairwise comparisons with significant betaNTI values (|βNTI| > 2) is the estimated influence of Selection; βNTI > 2 represents the heterogeneous selection; βNTI < -2 represents the homogeneous selection. The value of RCbray characterizes the magnitude of deviation between observed Bray–Curtis and Bray–Curtis expected under the randomization; a value of |RCbray| > 0.95 was considered significant. The fraction of all pairwise comparisons with |βNTI| < 2 and RCbray > +0.95 was taken as the influence of Dispersal Limitation combined with Drift. The fraction of all pairwise comparisons with |βNTI| < 2 and RCbray < -0.95 was taken as an estimate for the influence of Homogenizing Dispersal. The fraction of all pairwise comparisons with |βNTI| < 2 and |RCbray| < 0.95 estimates the influence of Drift acting alone.
+
+
+
+
+
+
+
+
 | Community Type          | Process                 | Percentage (%) |
 |------------------------|------------------------|----------------|
 | Natural habitat        | Variable selection     | 34.75          |
