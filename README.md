@@ -932,6 +932,246 @@ t1$cal_NTI(null.model = "taxa.labels", abundance.weighted = TRUE, runs = 999)
 
 
 
+### CROPLANDS ΑΝΤΙ ΓΙΑ URBAN
+
+
+```
+#CROPS
+library(tibble)
+
+##community matrix
+
+crops_comm_matrix<-read.table(
+  file.choose(),
+  header = TRUE,
+  sep = ";",
+  check.names = FALSE
+)
+rownames(crops_comm_matrix) <- crops_comm_matrix[,1]
+crops_comm_matrix<- crops_comm_matrix[, -1]
+dataframe_crops_comm_matrix<-crops_comm_matrix
+dataframe_crops_comm_matrix <- rownames_to_column(dataframe_crops_comm_matrix, var = "ASV")
+View(dataframe_crops_comm_matrix)
+
+###################################################
+
+##metadata
+
+#περνάω μέσα το σωστό temperate
+crops_metadata<-read.csv(file.choose(), sep=";" , header=TRUE, dec=".")
+View(crops_metadata)
+
+###################################################
+
+##taxonomy
+
+asv_crops<- read.table(
+  file.choose(),
+  header = TRUE,
+  sep = "\t",
+  check.names = FALSE
+)
+asv_crops<-asv_crops[,-1]
+View(asv_crops)
+
+###################################################
+
+##phylogeny
+
+asv_keep_crops <- dataframe_crops_comm_matrix$ASV
+tree_crops <- keep.tip(tree, asv_keep_crops)
+length(tree_crops$tip.label)
+dim(dataframe_crops_comm_matrix)
+
+####################################################
+
+
+library(microeco)
+library(ggplot2)
+#community matrix
+otu_table_crops<-dataframe_crops_comm_matrix
+#View(otu_table_crops)
+rownames(otu_table_crops) <- otu_table_crops[,1]
+otu_table_crops <- otu_table_crops[,-1]
+
+
+#metadata
+sample_table_crops<-crops_metadata
+sample_table_crops<-sample_table_crops[, -1]
+rownames(sample_table_crops) <- sample_table_crops[,1]
+View(sample_table_crops)
+
+#taxonomy
+tax_table_crops<-asv_crops
+rownames(tax_table_crops) <- tax_table_crops[,1]
+tax_table_crops <- tax_table_crops[,-1]
+View(tax_table_crops)
+
+#phylogeny
+#tree_crops
+################################################################
+
+mt_crops <- microtable$new(otu_table = otu_table_crops, sample_table = sample_table_crops, tax_table = tax_table_crops, phylo_tree = tree_crops)
+mt_crops1<-mt_crops
+mt_crops1$tidy_dataset()
+mt_crops1
+head(mt_crops1$tax_table)
+
+###############################################################
+
+mt_crops1$cal_abund()
+
+# first clone the data
+mt_rarefied_crops <- clone(mt_crops1)
+# use sample_sums to check the sequence numbers in each sample
+mt_rarefied_crops$sample_sums() %>% range
+
+# As an example, use 10000 sequences in each sample
+mt_rarefied_crops$rarefy_samples(sample.size = 6500)
+
+```
+
+### ALPHA DIVERSITY CROPLANDS
+
+```
+
+mt_rarefied_crops$cal_alphadiv(PD = TRUE)
+
+# return alpha_diversity in the object
+class(mt_rarefied_crops$alpha_diversity)
+
+
+
+# Δημιουργία trans_alpha object για ανάλυση α ποικιλότητας
+
+trans_alpha_crops <- trans_alpha$new(dataset = mt_rarefied_crops, group = "temperate")
+# return t1$data_stat
+head(trans_alpha_crops$data_stat)
+
+trans_alpha_crops$cal_diff(method = "wilcox")
+head(trans_alpha_crops$res_diff)
+
+trans_alpha_crops$plot_alpha(measure = "Chao1", shape = "temperate")
+# y_start: starting height for the first label
+# y_increase: increased height for each label
+trans_alpha_crops$plot_alpha(measure = "Chao1", shape = "temperate", add = "jitter", y_start = 0.1, y_increase = 0.1)
+
+
+trans_alpha_crops$plot_alpha(measure = "Shannon", shape = "temperate")
+# y_start: starting height for the first label
+# y_increase: increased height for each label
+trans_alpha_crops$plot_alpha(measure = "Shannon", shape = "temperate", add = "jitter", y_start = 0.1, y_increase = 0.1)
+
+trans_alpha_crops$plot_alpha(measure = "Simpson", shape = "temperate")
+# y_start: starting height for the first label
+# y_increase: increased height for each label
+trans_alpha_crops$plot_alpha(measure = "Simpson", shape = "temperate", add = "jitter", y_start = 0.1, y_increase = 0.1)
+
+
+trans_alpha_crops$plot_alpha(measure = "PD", shape = "temperate")
+# y_start: starting height for the first label
+# y_increase: increased height for each label
+trans_alpha_crops$plot_alpha(measure = "PD", shape = "temperate", add = "jitter", y_start = 0.1, y_increase = 0.1, group_order = c( "anthropogenic biome", "natural habitat"))
+
+trans_alpha_crops2 <- trans_alpha$new(dataset = mt_rarefied_crops, group = "envo_biome_2", by_group = "temperate")
+
+trans_alpha_crops2$cal_diff(method = "wilcox")
+library(magrittr)
+trans_alpha_crops2$res_diff %<>% base::subset(Significance != "ns")
+trans_alpha_crops2$plot_alpha(measure = "Chao1")
+trans_alpha_crops2$res_diff %<>% base::subset(Significance != "ns")
+trans_alpha_crops2$plot_alpha(measure = "Shannon")
+trans_alpha_crops2$res_diff %<>% base::subset(Significance != "ns")
+trans_alpha_crops2$plot_alpha(measure = "Simpson")
+trans_alpha_crops2$res_diff %<>% base::subset(Significance != "ns")
+trans_alpha_crops2$plot_alpha(measure = "PD")
+
+
+
+library(patchwork)
+
+# Κράτα μόνο τα σημαντικά αποτελέσματα
+trans_alpha_crops2$res_diff <- subset(
+  trans_alpha_crops2$res_diff,
+  Significance != "ns"
+)
+
+p5c <- trans_alpha_crops2$plot_alpha(measure = "Chao1")
+p6c <- trans_alpha_crops2$plot_alpha(measure = "Shannon")
+p7c <- trans_alpha_crops2$plot_alpha(measure = "Simpson")
+p8c <- trans_alpha_crops2$plot_alpha(measure = "PD")
+
+(p5c + p6c) /
+(p7c + p8c)
+
+# Κράτα μόνο τα σημαντικά αποτελέσματα
+trans_alpha_crops$res_diff <- subset(
+  trans_alpha_crops$res_diff,
+  Significance != "ns"
+)
+
+p1c <- trans_alpha_crops$plot_alpha(measure = "Chao1")
+p2c <- trans_alpha_crops$plot_alpha(measure = "Shannon")
+p3c <- trans_alpha_crops$plot_alpha(measure = "Simpson")
+p4c <- trans_alpha_crops$plot_alpha(measure = "PD")
+
+(p1c + p2c) /
+(p3c + p4c)
+
+
+
+```
+
+
+
+
+
+<img width="2000" height="993" alt="image" src="https://github.com/user-attachments/assets/aae4cf2b-b654-4f51-8af4-60aab9807df3" />
+
+
+
+
+
+
+
+
+<img width="2000" height="993" alt="image" src="https://github.com/user-attachments/assets/12a4eb53-6279-4e07-bfdf-7f47d179da16" />
+
+
+
+
+
+
+### BETA DIVERSITY CROPLANDS
+
+```
+
+#beta div
+
+# require GUniFrac package installed
+mt_rarefied_crops$cal_betadiv(unifrac = TRUE)
+# return beta_diversity list in the object
+class(mt_rarefied_crops$beta_diversity)
+
+
+#BOXPLOT
+# calculate and plot sample distances within groups
+trans_beta_crops$cal_group_distance(within_group = TRUE)
+# return t1$res_group_distance
+# perform Wilcoxon Rank Sum and Signed Rank Tests
+trans_beta_crops$cal_group_distance_diff(method = "wilcox")
+# plot_group_order parameter can be used to adjust orders in x axis
+trans_beta_crops$plot_group_distance(add = "mean")
+
+
+
+
+```
+
+
+
+
+<img width="672" height="671" alt="image" src="https://github.com/user-attachments/assets/71c3bdbf-d8a7-4e51-8392-655472c3ed75" />
 
 
 
@@ -941,6 +1181,37 @@ t1$cal_NTI(null.model = "taxa.labels", abundance.weighted = TRUE, runs = 999)
 
 
 
+```
+#TRANSBETA OBJECT
+
+trans_beta_crops <- trans_beta$new(dataset = mt_rarefied_crops, group = "temperate", measure = "bray")
+trans_beta_crops2 <- trans_beta$new(dataset = mt_rarefied_crops, group = "envo_biome_2", measure = "bray")
+trans_beta_crops3 <- trans_beta$new(dataset = mt_rarefied_crops, group = "study_id", measure = "bray")
+
+
+
+trans_beta_crops$cal_ordination(method = "PCoA")
+# t1$res_ordination is the ordination result list
+class(trans_beta_crops$res_ordination)
+# plot the PCoA result with confidence ellipse
+trans_beta_crops$plot_ordination(plot_color = "temperate", plot_shape = "temperate", plot_type = c("point", "ellipse"))
+
+
+
+trans_beta_crops2$cal_ordination(method = "PCoA")
+# t1$res_ordination is the ordination result list
+class(trans_beta_crops2$res_ordination)
+# plot the PCoA result with confidence ellipse
+trans_beta_crops2$plot_ordination(plot_color = "envo_biome_2", plot_shape = "envo_biome_2", plot_type = c("point", "ellipse"))
+
+
+```
+
+
+
+
+
+<img width="1418" height="1049" alt="image" src="https://github.com/user-attachments/assets/55c5a777-8d8f-4d78-914b-aa696872ae40" />
 
 
 
@@ -949,19 +1220,20 @@ t1$cal_NTI(null.model = "taxa.labels", abundance.weighted = TRUE, runs = 999)
 
 
 
+<img width="1418" height="1049" alt="image" src="https://github.com/user-attachments/assets/c14a8ad9-2202-46fc-916a-e104765967d6" />
 
 
 
+```
+#PERMANOVA
+trans_beta_crops$cal_manova(manova_all = TRUE)
+trans_beta_crops$res_manova
 
-<img width="2000" height="993" alt="image" src="https://github.com/user-attachments/assets/7dca3423-34c6-4174-9abb-5e6a4b9e1624" />
-
-
-
-
-
-
+```
 
 
-
-<img width="2000" height="993" alt="image" src="https://github.com/user-attachments/assets/1e679e94-c626-4d47-9ab3-730313b62e72" />
-
+| Term       | Df  | SumOfSqs   | R²       | F        | Pr(>F) | Significance |
+|------------|-----|------------|----------|----------|--------|--------------|
+| temperate  | 1   | 8.257341   | 0.070246 | 24.10162 | 0.001  | ***          |
+| Residual   | 319 | 109.291062 | 0.929754 | NA       | NA     |              |
+| Total      | 320 | 117.548403 | 1.000000 | NA       | NA     |              |
