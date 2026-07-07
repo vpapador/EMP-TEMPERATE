@@ -914,3 +914,45 @@ t1$cal_NTI(null.model = "taxa.labels", abundance.weighted = TRUE, runs = 999)
 | MST  | natural habitat     | anthropogenic biome   | 0.6537373768 | 0.7732871336 | 0 | 0 | 0 | 0 | 0 | 0 |
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<img width="2000" height="993" alt="image" src="https://github.com/user-attachments/assets/7dca3423-34c6-4174-9abb-5e6a4b9e1624" />
+
+
+
+
+
+
+
+
+
+<img width="2000" height="993" alt="image" src="https://github.com/user-attachments/assets/1e679e94-c626-4d47-9ab3-730313b62e72" />
+
