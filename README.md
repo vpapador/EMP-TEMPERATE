@@ -853,6 +853,13 @@ In the example, the fraction of pairwise comparisons with significant betaNTI va
 
 
 
+
+
+
+
+
+
+
 | **βNTI / RC<sub>Bray</sub>**                                 | **Συμπέρασμα**         | **Ερμηνεία**                                                                 |
 | ------------------------------------------------------------ | ---------------------- | ---------------------------------------------------------------------------- |
 | **βNTI > +2**                                                | Homogeneous selection  | Το περιβάλλον ωθεί τις κοινότητες να γίνουν πιο όμοιες.                      |
@@ -860,6 +867,16 @@ In the example, the fraction of pairwise comparisons with significant betaNTI va
 | **−2 ≤ βNTI ≤ +2** και **RC<sub>Bray</sub> > +0.95**         | Dispersal limitation   | Η περιορισμένη διασπορά εμποδίζει τα είδη να φτάσουν σε όλες τις κοινότητες. |
 | **−2 ≤ βNTI ≤ +2** και **RC<sub>Bray</sub> < −0.95**         | Homogenizing dispersal | Η έντονη διασπορά εξομοιώνει τις κοινότητες.                                 |
 | **−2 ≤ βNTI ≤ +2** και **−0.95 ≤ RC<sub>Bray</sub> ≤ +0.95** | Undominated / Drift    | Οι διαφορές οφείλονται κυρίως σε τυχαίες διεργασίες (ecological drift).      |
+
+
+
+
+
+
+
+
+
+
 
 
 
