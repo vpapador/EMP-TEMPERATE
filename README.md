@@ -1270,3 +1270,41 @@ trans_beta_crops$res_manova
 
 
 
+
+
+### ΜΗΔΕΝΙΚΑ ΜΟΝΤΕΛΑ ΓΙΑ ΤΑ CROPLANDS
+
+
+```
+t1 <- trans_nullmodel$new(mt_crops1, filter_thres = 0.0005)
+t1$cal_ses_betampd(runs = 1000, abundance.weighted = TRUE, null.model="taxa.labels")
+t1$cal_ses_betamntd(runs = 1000, abundance.weighted = TRUE, null.model = "taxa.labels")
+
+tmp <- "./test1"; dir.create(tmp)
+t1$cal_ses_betamntd(runs = 1000, abundance.weighted = TRUE, null.model = "taxa.labels", use_iCAMP = TRUE, iCAMP_tempdir = tmp)
+
+t1$cal_rcbray(runs = 1000)
+
+t1$cal_process(use_betamntd = TRUE)
+t1$res_process
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
