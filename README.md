@@ -1299,6 +1299,18 @@ t1$res_process
 
 
 
+| Community Type          | Process                 | Percentage (%) |
+|------------------------|------------------------|----------------|
+| Natural habitat        | Variable selection     | 34.75          |
+| Natural habitat        | Homogeneous selection  | 1.59           |
+| Natural habitat        | Dispersal limitation   | 8.90           |
+| Natural habitat        | Homogeneous dispersal  | 1.24           |
+| Natural habitat        | Drift                  | 53.52          |
+| Anthropogenic biome    | Variable selection     | 7.63           |
+| Anthropogenic biome    | Homogeneous selection  | 0.28           |
+| Anthropogenic biome    | Dispersal limitation   | 70.94          |
+| Anthropogenic biome    | Homogeneous dispersal  | 0.00           |
+| Anthropogenic biome    | Drift                  | 21.15          |
 
 
 
